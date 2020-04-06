@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="JDBC学习笔记, Hexo">
+    <meta name="keywords" content="标签, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>JDBC学习笔记 | Hexo</title>
+    <title>标签 | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JDBC学习笔记</h1>
+                    <h1 class="description center-align post-title">tags</h1>
                 </div>
             </div>
         </div>
@@ -434,13 +434,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/JAVA/">
-                                <span class="chip bg-color">JAVA</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -452,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-05
+                    2020-04-06
                 </div>
                 
 
@@ -469,109 +465,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="JDBC学习笔记"><a href="#JDBC学习笔记" class="headerlink" title="JDBC学习笔记"></a>JDBC学习笔记</h1><ol>
-<li><strong>IDEA 引包</strong></li>
-</ol>
-<img src="/2020/04/05/JDBC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200405181940819.png" alt="image-20200405181940819">
-
-<p><img src="/2020/04/05/JDBC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200405182037962.png" alt="image-20200405182037962"></p>
-<ol start="2">
-<li><strong>导入SQL操作类</strong></li>
-</ol>
-<p><img src="/2020/04/05/JDBC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/C:%5CUsers%5CAdministrator.USER-20200328BI%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200405182311805.png" alt="image-20200405182311805"></p>
-<ol start="3">
-<li><p><strong>加载数据库驱动</strong></p>
-<pre class=" language-java"><code class="language-java">Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>类名<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//使用Class.forName(类名);加载数据库驱动</span>
-</code></pre>
-<p><img src="/2020/04/05/JDBC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200405182549807.png" alt="image-20200405182549807"></p>
-</li>
-</ol>
-<p>3.1 <strong>可能会出现的错误</strong></p>
-<p><img src="/2020/04/05/JDBC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/image-20200405183213256.png" alt="image-20200405183213256"></p>
-<ol start="4">
-<li><p><strong>创建数据库连接对象</strong></p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">static</span> String Url<span class="token operator">=</span><span class="token string">"jdbc:sqlserver://localhost:1433;DataBaseName=StudentDB"</span><span class="token punctuation">;</span>
-<span class="token keyword">static</span> String username<span class="token operator">=</span><span class="token string">"sa"</span><span class="token punctuation">;</span>
-<span class="token keyword">static</span>  String Pwd<span class="token operator">=</span><span class="token string">"123456"</span><span class="token punctuation">;</span>
-Connection conn<span class="token operator">=</span>DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>Url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>Pwd<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>  使用Connection对象的prepareStatement方法(此方法可以传递一个预编译的sql语句) </p>
-<p>   例如：<code>PreparedStatement ps=conn.prepareStatement(&quot;insert into student values(？,？,？)&quot;);</code></p>
-<p>  “？”号 是占位符  可以通过 ps.setXxx(占位符位置（从1开始），值) 来填充sql里的?号，Xxx表示填充的数据类型；</p>
-</li>
-</ol>
-<p>   得到PreparedStatement对象来操作数据库</p>
-<pre><code> PreparedStatement对象的executeQuery方法用于查询 返回值类型是ResultSet; </code></pre><p>   ​        ResultSet对象的使用方法：</p>
-<p>   ​                getString()</p>
-<p>   ​                getInt()</p>
-<p>   PreparedStatement对象的execute方法用于增删改 返回值类型 boolean;</p>
-<p>   5 . <strong>封装数据库操作类</strong></p>
-<pre class=" language-java"><code class="language-java">   <span class="token keyword">package</span>  com<span class="token punctuation">;</span>
-   <span class="token keyword">import</span> java<span class="token punctuation">.</span>net<span class="token punctuation">.</span>URL<span class="token punctuation">;</span>
-   <span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
-   <span class="token keyword">public</span>  <span class="token keyword">class</span> <span class="token class-name">DBhelper</span>
-   <span class="token punctuation">{</span>
-       <span class="token keyword">static</span> String Url<span class="token operator">=</span><span class="token string">"jdbc:sqlserver://localhost:1433;DataBaseName=StudentDB"</span><span class="token punctuation">;</span>
-       <span class="token keyword">static</span> String username<span class="token operator">=</span><span class="token string">"sa"</span><span class="token punctuation">;</span>
-       <span class="token keyword">static</span>  String Pwd<span class="token operator">=</span><span class="token string">"123456"</span><span class="token punctuation">;</span>
-       <span class="token keyword">static</span> String driver<span class="token operator">=</span><span class="token string">"com.microsoft.sqlserver.jdbc.SQLServerDriver"</span><span class="token punctuation">;</span>
-       <span class="token keyword">public</span>  <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">LoadeDrive</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-       <span class="token punctuation">{</span>
-
-           <span class="token keyword">try</span> <span class="token punctuation">{</span>
-               Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span>driver<span class="token punctuation">)</span><span class="token punctuation">;</span>
-           <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassNotFoundException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-               e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-           <span class="token punctuation">}</span>
-
-       <span class="token punctuation">}</span>
-       <span class="token keyword">public</span> <span class="token keyword">static</span>   <span class="token keyword">boolean</span> <span class="token function">Execute</span><span class="token punctuation">(</span>String sql<span class="token punctuation">)</span>
-       <span class="token punctuation">{</span>
-           <span class="token keyword">try</span> <span class="token punctuation">{</span>
-               Connection conn<span class="token operator">=</span>DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>Url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>Pwd<span class="token punctuation">)</span><span class="token punctuation">;</span>
-               PreparedStatement pr<span class="token operator">=</span> conn<span class="token punctuation">.</span><span class="token function">prepareStatement</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">;</span>
-               pr<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-               pr<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-               conn<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-               <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-
-           <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-               e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-               <span class="token keyword">return</span>  <span class="token boolean">false</span><span class="token punctuation">;</span>
-           <span class="token punctuation">}</span>
-       <span class="token punctuation">}</span>
-
-       <span class="token keyword">public</span> <span class="token keyword">static</span>  ResultSet <span class="token function">GetSet</span><span class="token punctuation">(</span>String sql<span class="token punctuation">)</span>
-       <span class="token punctuation">{</span>
-           <span class="token keyword">try</span> <span class="token punctuation">{</span>
-               Connection conn<span class="token operator">=</span>DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>Url<span class="token punctuation">,</span>username<span class="token punctuation">,</span>Pwd<span class="token punctuation">)</span><span class="token punctuation">;</span>
-               PreparedStatement ps<span class="token operator">=</span>conn<span class="token punctuation">.</span><span class="token function">prepareStatement</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">;</span>
-               <span class="token keyword">return</span>  ps<span class="token punctuation">.</span><span class="token function">executeQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-           <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-               e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-               <span class="token keyword">return</span>  null<span class="token punctuation">;</span>
-           <span class="token punctuation">}</span>
-       <span class="token punctuation">}</span>
-
-   <span class="token punctuation">}</span></code></pre>
-<p>6 . <strong>可滚动结果集</strong></p>
-<pre class=" language-JAVA"><code class="language-JAVA">PreparedStatement ps=conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);//CONCUR_READ_ONLY 表示结果集并发类型为只读，不允许修改   ResultSet.CONCUR_UPDATABLE//表示可修改结果集
-Result rst=ps.executeQuery();
-rst.absoute(3)//表示定位至结果集第3条记录
-rst.previous() //定位至当前记录的上一条记录
-rst.next()//定位至当前记录的下一条记录
-rst.first()//定位至的第一条记录
-rst.last()//定位至的最后一条记录 
-
-res.moveToInsertRow(); //移动到待插入的行
-res.updateString("name","d");  //插入数据
-res.insertRow();  //提交到结果集和数据库
-res.absolute(2);  //定位到第二行
-res.updateInt("age",18);  //更新第二行数据
-res.updateRow();  //提交更新
-
-</code></pre>
-
+                
             </div>
             <hr/>
 
@@ -596,7 +490,7 @@ res.updateRow();  //提交更新
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/05/JDBC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://yoursite.com/2020/04/05/JDBC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+                    <a href="http://yoursite.com/tags/index.html">http://yoursite.com/tags/index.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -633,11 +527,7 @@ res.updateRow();  //提交更新
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/JAVA/">
-                                    <span class="chip bg-color">JAVA</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -803,99 +693,29 @@ res.updateRow();  //提交更新
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/04/06/IO%E6%93%8D%E4%BD%9C/">
+                <a href="/tags/index.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="IO操作">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
                         
-                        <span class="card-title">IO操作</span>
+                        <span class="card-title">tags</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            IO学习笔记File类import java.io.*; //文件操作类
-File file=new File("e:\\text.txt");  //打开文件
-//常用方法
-mkdir()// 创建单级目录
-mkdirs()// 创建多级
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-06
-                        </span>
-                        <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            John Doe
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/JAVA/">
-                        <span class="chip bg-color">JAVA</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/05/JDBC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="JDBC学习笔记">
-                        
-                        <span class="card-title">JDBC学习笔记</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            JDBC学习笔记
-IDEA 引包
-
-
-
-
-
-导入SQL操作类
-
-
-
-加载数据库驱动
-Class.forName(类名);
-//使用Class.forName(类名);加载数据库驱动
-
-
-
-
-3.1 可能会出现的错误
-
-
-创建数据库连接对象
-
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-06
                             </span>
                         <span class="publish-author">
                             
@@ -907,13 +727,43 @@ Class.forName(类名);
                 </div>
 
                 
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/JAVA/">
-                        <span class="chip bg-color">JAVA</span>
-                    </a>
-                    
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/tags/index.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="tags">
+                        
+                        <span class="card-title">tags</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            John Doe
+                            
+                        </span>
+                    </div>
                 </div>
+
                 
             </div>
         </div>
