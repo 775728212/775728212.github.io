@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Mybatis之CRUD操作, 个人博客">
+    <meta name="keywords" content="Mybatis扩展, 个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mybatis之CRUD操作 | 个人博客</title>
+    <title>Mybatis扩展 | 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mybatis之CRUD操作</h1>
+                    <h1 class="description center-align post-title">Mybatis扩展</h1>
                 </div>
             </div>
         </div>
@@ -436,8 +436,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/CRUD/">
-                                <span class="chip bg-color">CRUD</span>
+                            <a href="/tags/%E6%89%A9%E5%B1%95/">
+                                <span class="chip bg-color">扩展</span>
                             </a>
                         
                     </div>
@@ -461,7 +461,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-09
+                    2020-04-11
                 </div>
                 
 
@@ -478,119 +478,36 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>insert</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>SaveUser<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.demo.maindao.User<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-insert  into user(username,birthday,sex,address)values(#{username},#{birthday},#{sex},#{address})
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>selectKey</span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span> <span class="token attr-name">keyProperty</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">keyColumn</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">order</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>AFTER<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>select last_insert_id()<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>selectKey</span><span class="token punctuation">></span></span></code></pre>
-<p>持久层接口类：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">void</span>  <span class="token function">SaveUser</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>测试：</p>
-<pre class=" language-java"><code class="language-java">    <span class="token keyword">private</span>  InputStream in<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> SqlSession sqlSession<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> Iuser iuser<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Before</span>
-    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span>  Exception
-    <span class="token punctuation">{</span>
-         in<span class="token operator">=</span> Resources<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span><span class="token string">"/SqlMapConfig.xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-         SqlSessionFactoryBuilder builder<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">SqlSessionFactoryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-         SqlSessionFactory Factory <span class="token operator">=</span> builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
-         sqlSession<span class="token operator">=</span>Factory<span class="token punctuation">.</span><span class="token function">openSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-         iuser<span class="token operator">=</span>sqlSession<span class="token punctuation">.</span><span class="token function">getMapper</span><span class="token punctuation">(</span>Iuser<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-    <span class="token annotation punctuation">@After</span>
-    <span class="token keyword">public</span>  <span class="token keyword">void</span> <span class="token function">ShiFang</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span>  Exception
-    <span class="token punctuation">{</span>
-
-        sqlSession<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        sqlSession<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        in<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>  
-
-<span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span>  <span class="token keyword">void</span> <span class="token function">SaveUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span>  Exception
-<span class="token punctuation">{</span>
- User user<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- user<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- user<span class="token punctuation">.</span><span class="token function">setAddress</span><span class="token punctuation">(</span><span class="token string">"bj"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- Date date<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- user<span class="token punctuation">.</span><span class="token function">setBirthday</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">;</span>
- user<span class="token punctuation">.</span><span class="token function">setSex</span><span class="token punctuation">(</span><span class="token string">"男"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- iuser<span class="token punctuation">.</span><span class="token function">SaveUser</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>添加用户并且返回新添加数据的ID</p>
-<p>parameterType：参数的类型</p>
-<p>resultType：返回值类型</p>
-<p>keyProperty：实体类属性名</p>
-<p>keyColumn：数据库列名</p>
-<p>order：AFTER:在之前查询，BEFOR:在之后查询</p>
-<p>select last_insert_id()： 查询刚添加数据的ID  </p>
-<h2 id="修改用户"><a href="#修改用户" class="headerlink" title="修改用户"></a>修改用户</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>update</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UpdateUser<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.demo.maindao.User<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>update  user  set username=#{username},address=#{address},sex=#{sex},birthday=#{birthday} where id=#{id}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>update</span><span class="token punctuation">></span></span></code></pre>
-<p>持久层接口：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">UpdateUser</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>delete</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>DeleteByID<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>int<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>delete from user where id=#{uid}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>delete</span><span class="token punctuation">></span></span></code></pre>
-<p>持久层接口：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">DeleteByID</span><span class="token punctuation">(</span><span class="token keyword">int</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="查询一个及模糊查询"><a href="#查询一个及模糊查询" class="headerlink" title="查询一个及模糊查询"></a>查询一个及模糊查询</h2><p><img src="/2020/04/09/Mybatis%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C(%E4%BA%8C)/QQ%E6%88%AA%E5%9B%BE20200409203733.png" alt></p>
-<p><img src="/2020/04/09/Mybatis%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C(%E4%BA%8C)/QQ%E6%88%AA%E5%9B%BE20200409203853.png" alt></p>
-<p><img src="/2020/04/09/Mybatis%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C(%E4%BA%8C)/QQ%E6%88%AA%E5%9B%BE20200409204047.png" alt></p>
-<h2 id="使用实体类的包装对象作为查询条件"><a href="#使用实体类的包装对象作为查询条件" class="headerlink" title="使用实体类的包装对象作为查询条件"></a>使用实体类的包装对象作为查询条件</h2><p>OGNL表达式：<br>全称是Object Graphic Navigation Language<br>意思是对象图导航语言<br>它是通过对象的取值方法来获取数据，在写法上把get给省略了<br>比如说：我们获取用户的名称<br>普通的写法：user.getUsername()<br>OGNL表达式的写法：user.username</p>
-<p>我们思考一下mybatis中为什么能直接写username，而不使用上面的普通写法呢？<br>因为parameterType中已经提供了属性所属的类，所以此时不需要写对象名</p>
-<p><img src="/2020/04/09/Mybatis%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C(%E4%BA%8C)/QQ%E6%88%AA%E5%9B%BE20200411143252.png" alt></p>
-<p>mybatis基于OGNL表达式做了进一步的简化，连对象都不用写，更方便</p>
-<p>我们先在domain创建一个<strong>QueryVo</strong>类<br><strong>QueryVo.java</strong>：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QueryVo</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> User <span class="token function">getUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> user<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setUser</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>user <span class="token operator">=</span> user<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">private</span> User user<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span></code></pre>
-<p>Iuserdao.java:</p>
-<pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token function">FindByName</span><span class="token punctuation">(</span>QueryVo vo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p><strong>IUserDao.xml</strong>：</p>
-<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>FindByName<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.demo.maindao.QueryVo<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.demo.maindao.User<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>select  * from user  where username like #{user.username}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
-<p>测试类：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">FindByName</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    QueryVo vo<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">QueryVo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    User user<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    user<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">"%王%"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    vo<span class="token punctuation">.</span><span class="token function">setUser</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    List<span class="token operator">&lt;</span>User<span class="token operator">></span> users<span class="token operator">=</span>iuser<span class="token punctuation">.</span><span class="token function">FindByName</span><span class="token punctuation">(</span>vo<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span>User u<span class="token operator">:</span>users<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>u<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="返回值深入"><a href="#返回值深入" class="headerlink" title="返回值深入"></a>返回值深入</h2><p>我们之前说过<strong>实体类的属性名</strong>一定要跟<strong>数据库的字段名</strong>一致<br>如果我们非要不一样呢</p>
-<p>第一种方式：<strong>起别名</strong></p>
-<pre class=" language-xml"><code class="language-xml">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>findAll<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.zzq.domain.User<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        select
-            id as userid,
-            username as username,
-            address as useraddress,
-            birthday as userbirthday,
-            sex as usersex
-         from
-            user;
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></code></pre>
-<p>将数据库查询出来的数据列明跟实体类属性名称对应即可；</p>
-<p><strong>优点  **  执行效率高</strong>，**开发效率低  </p>
-<p>第二种方式<strong>不需要起别名</strong>，我们采用<strong>配置的方式</strong></p>
-<p><img src="/2020/04/09/Mybatis%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C(%E4%BA%8C)/QQ%E6%88%AA%E5%9B%BE20200411144633.png" alt></p>
-<p><strong>resultMap</strong>标签的id属性是可以随便取的，只是起到唯一标识的作用</p>
-<p><strong>property</strong> 属性是实体类属性名称  <strong>colum</strong> 属性对应数据库列名</p>
-<p>我们去掉select标签的<strong>resultType</strong>属性，取而代之的是<strong>resultMap</strong></p>
-<p><img src="/2020/04/09/Mybatis%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C(%E4%BA%8C)/QQ%E6%88%AA%E5%9B%BE20200411145011.png" alt></p>
-<p>  <strong>优点与第一种方式相反</strong></p>
+                <h1 id="properties标签的使用及细节"><a href="#properties标签的使用及细节" class="headerlink" title="properties标签的使用及细节"></a>properties标签的使用及细节</h1><p>我们之前的<strong>数据库连接信息</strong>是写在<strong>dataSource标签</strong>中的</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411145808.png" alt></p>
+<p>我们还有另一种写法，就是写在<strong>properties标签</strong>中</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411145922.png" alt></p>
+<p>我们可以进一步<strong>解耦</strong>，把properties标签抽取成一个外部文件，如下：<br>（此时写在外部文件，<code>&amp;</code>符号就无需转义了）</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411150050.png" alt></p>
+<p><strong>resource</strong>属性用于指定配置文件的位置，是按照类路径的写法来写的，并且必须存在于类路径下<br>如果是放在类的根目录下，则可以直接写：<code>jdbcConfig.properties</code><br>我们看根目录，需要切换到<strong>Packages</strong>，如下：</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411150202.png" alt></p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411150257.png" alt></p>
+<p>最后注意两者的名字要一一对应</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411150329.png" alt></p>
+<p>想要使用properties标签引入外部文件，除了可以使用resource属性以外，还可以使用url<br>URL属性要求按照URL的写法来写地址<br>URL的全称是：Uniform Resource Locator 统一资源定位符，统一资源定位符<br>它可以唯一标识一个资源的位置<br>写法：协议 主机 端口 URI<br>如：<a href="http://localhost:8080/demo01" target="_blank" rel="noopener">http://localhost:8080/demo01</a><br>而URI的全称是：Uniform Resource Identifier，统一资源标识符<br>它可以在应用中唯一定位资源</p>
+<h1 id="typeAliases标签和package标签"><a href="#typeAliases标签和package标签" class="headerlink" title="typeAliases标签和package标签"></a>typeAliases标签和package标签</h1><p>我们之前在<strong>IUserDao.xml</strong>提到过parameterType标签可以取多个值，效果都一样<br>这是因为mybatis帮我们取了<strong>别名</strong></p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411150525.png" alt></p>
+<p>我们自己也可以用<strong>typeAliases标签</strong>取别名，但是它只能配置<strong>domain</strong>中类的别名</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411150658.png" alt></p>
+<p><strong>type属性</strong>指定的是<strong>实体类全限定类名</strong>，而<strong>alias属性</strong>指定<strong>别名</strong>，并且当指定了别名就不再区分大小写了</p>
+<p>我们配置完别名，就可以到优化代码了</p>
+<p>优化前：</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411151009.png" alt></p>
+<p>优化后：</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/20200329202416784.png" alt></p>
+<p>但是如果需要配置的<strong>别名</strong>过多，会很麻烦<br>我们可以用<strong>package标签</strong>，一次性完成配置</p>
+<p>package标签用于指定要配置的别名的<strong>包</strong><br>当指定之后，该包下的实体类<strong>都会注册别名</strong>，并且<strong>类名就是别名</strong>，不再区分大小写</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/QQ%E6%88%AA%E5%9B%BE20200411151445.png" alt></p>
+<p><strong>mappers标签</strong>也可以使用<strong>package标签</strong><br>当package标签指定了<strong>dao接口</strong>所在的包时，就不需要再写mapper以及resource（或url）或者class了</p>
+<p>优化前：</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/20200329203450679.png" alt></p>
+<p>优化后：</p>
+<p><img src="/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/20200329203522288.png" alt></p>
 
             </div>
             <hr/>
@@ -616,7 +533,7 @@ insert  into user(username,birthday,sex,address)values(#{username},#{birthday},#
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://775728212.github.io/2020/04/09/Mybatis%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C(%E4%BA%8C)/">http://775728212.github.io/2020/04/09/Mybatis%E4%B9%8BCRUD%E6%93%8D%E4%BD%9C(%E4%BA%8C)/</a>
+                    <a href="http://775728212.github.io/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/">http://775728212.github.io/2020/04/11/Mybatis%E6%89%A9%E5%B1%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -654,8 +571,8 @@ insert  into user(username,birthday,sex,address)values(#{username},#{birthday},#
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/CRUD/">
-                                    <span class="chip bg-color">CRUD</span>
+                                <a href="/tags/%E6%89%A9%E5%B1%95/">
+                                    <span class="chip bg-color">扩展</span>
                                 </a>
                             
                         </div>
@@ -827,6 +744,57 @@ insert  into user(username,birthday,sex,address)values(#{username},#{birthday},#
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2020/04/11/Mybatis%E4%B9%8B%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%8F%8A%E4%BA%8B%E5%8A%A1(%E5%9B%9B)/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Mybatis之连接池及事务">
+                        
+                        <span class="card-title">Mybatis之连接池及事务</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            连接池介绍我们在实际开发中都会使用连接池因为它可以减少我们获取连接所消耗的时间
+连接池就是用于存储连接的一个容器容器其实就是一个集合对象，该集合必须.是线程安全的,不能两个线程拿到统一连接该集合还必须实现队列的特性:先进先出
+连接池的分类m
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Mybatis/" class="post-category">
+                                    Mybatis
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
+                        <span class="chip bg-color">连接池</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2020/04/09/MyBatis%E6%89%A7%E8%A1%8C%E5%88%86%E6%9E%90(%E4%B8%89)/">
                     <div class="card-image">
                         
@@ -846,9 +814,9 @@ insert  into user(username,birthday,sex,address)values(#{username},#{birthday},#
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -866,58 +834,6 @@ insert  into user(username,birthday,sex,address)values(#{username},#{birthday},#
                     
                     <a href="/tags/%E5%88%86%E6%9E%90MyBatis/">
                         <span class="chip bg-color">分析MyBatis</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/08/Mybatis%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE(%E4%B8%80)/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Mybatis环境配置">
-                        
-                        <span class="card-title">Mybatis环境配置</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            创建Maven工程添加依赖项&lt;!-- Mybatis依赖项-->
-&lt;dependency>
-    &lt;groupId>org.mybatis&lt;/groupId>
-    &lt;artifactId>mybatis&
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Mybatis/" class="post-category">
-                                    Mybatis
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Mybatis/">
-                        <span class="chip bg-color">Mybatis</span>
                     </a>
                     
                 </div>
