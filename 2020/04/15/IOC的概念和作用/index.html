@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Mybatis之注解开发(八), 个人博客">
+    <meta name="keywords" content="IOC的概念和作用, 个人博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mybatis之注解开发(八) | 个人博客</title>
+    <title>IOC的概念和作用 | 个人博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +306,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mybatis之注解开发(八)</h1>
+                    <h1 class="description center-align post-title">IOC的概念和作用</h1>
                 </div>
             </div>
         </div>
@@ -434,25 +434,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/">
-                                <span class="chip bg-color">注解开发</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Mybatis/" class="post-category">
-                                Mybatis
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -461,7 +448,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-14
+                    2020-04-15
                 </div>
                 
 
@@ -478,67 +465,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>注解是可以代替<strong>映射文件</strong>（如IUserDao.xml等等），<strong>主配置文件</strong>（SqlMapConfig.xml）还是要写的</p>
-<p>在mybatis中针对<strong>CRUD</strong>一共有四个注解，分别是：<br><code>@Select</code>，<code>@Insert</code>，<code>@Update</code>和<code>@Delete</code></p>
-<p>例如：</p>
-<p><img src="/2020/04/14/Mybatis%E4%B9%8B%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91(%E5%85%AB)/image-20200414152811363.png" alt="image-20200414152811363"></p>
-<p>原理：</p>
-<p><img src="/2020/04/14/Mybatis%E4%B9%8B%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91(%E5%85%AB)/image-20200414153138651.png" alt="image-20200414153138651"></p>
-<p><strong>注意</strong>：<br>当使用<strong>注解开发</strong>的同时，又存在有<strong>映射配置文件</strong>（如IUserDao.xml），此时无论怎样都会报错的</p>
-<h2 id="注解开发保存和更新功能"><a href="#注解开发保存和更新功能" class="headerlink" title="注解开发保存和更新功能"></a>注解开发保存和更新功能</h2><pre class=" language-java"><code class="language-java"> <span class="token annotation punctuation">@Insert</span><span class="token punctuation">(</span><span class="token string">"insert into user(username,address,sex,birthday)values(#{username},#{address},#{sex},#{birthday})"</span><span class="token punctuation">)</span>    
- <span class="token keyword">void</span> <span class="token function">saveUser</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span><span class="token punctuation">;</span> </code></pre>
-<pre class=" language-java"><code class="language-java"> <span class="token annotation punctuation">@Update</span><span class="token punctuation">(</span><span class="token string">"update user set username=#{username},address=#{address},sex=#{sex},birthday=#{birthday} where id=#{id}"</span><span class="token punctuation">)</span>
- <span class="token keyword">void</span> <span class="token function">updateUser</span><span class="token punctuation">(</span>User user<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<pre class=" language-java"><code class="language-java"> <span class="token annotation punctuation">@Delete</span><span class="token punctuation">(</span><span class="token string">"delete from user where id=#{id}"</span><span class="token punctuation">)</span>    
- <span class="token keyword">void</span> <span class="token function">deleteUser</span><span class="token punctuation">(</span>Integer userId<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"select * from user where username like #{username}"</span><span class="token punctuation">)</span>    
-List<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token function">findUserByName</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span><span class="token punctuation">;</span>  
-<span class="token comment" spellcheck="true">//模糊查找</span></code></pre>
-<h2 id="当实体类属性名和数据库列名不一致时"><a href="#当实体类属性名和数据库列名不一致时" class="headerlink" title="当实体类属性名和数据库列名不一致时"></a>当实体类属性名和数据库列名不一致时</h2><p>我们可以加入以下注解完成<strong>实体类属性</strong>和<strong>数据库列名</strong>的映射</p>
-<pre class=" language-java"><code class="language-java"> <span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"select * from user"</span><span class="token punctuation">)</span>
-    <span class="token annotation punctuation">@Results</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token punctuation">{</span>
-            <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> column <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userId"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"username"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userName"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"address"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userAddress"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"sex"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userSex"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-            <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"birthday"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userBirthday"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-    List<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>针对多个查询方法，再分别给它们加上注解的话代码重复性就太高了</p>
-<p>因此，我们可以给注解加上<strong>唯一标识</strong>，让其他方法去引用它</p>
-<p><img src="/2020/04/14/Mybatis%E4%B9%8B%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91(%E5%85%AB)/image-20200414154039299.png" alt="image-20200414154039299"></p>
-<p><code>@ResultMap(value = {&quot;userMap&quot;})</code>是标准写法，因为可以引用<strong>多个</strong></p>
-<p>如果只引用一个的话可以用以下<strong>简略写法</strong></p>
-<p>（原理：<strong>value</strong>本身就可以省略；只有一个元素的话<code>{}</code>也可以省略）</p>
-<p><code>@ResultMap(&quot;userMap&quot;)</code></p>
-<h2 id="注解开发多表一对一查询"><a href="#注解开发多表一对一查询" class="headerlink" title="注解开发多表一对一查询"></a>注解开发多表一对一查询</h2><p>查询账户时同时查询对应的用户</p>
-<p><img src="/2020/04/14/Mybatis%E4%B9%8B%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91(%E5%85%AB)/image-20200414154652554.png" alt="image-20200414154652554"></p>
-<pre class=" language-java"><code class="language-java"> <span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"select * from account"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@Results</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string">"accountMap"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token punctuation">{</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> column <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"uid"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"uid"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"money"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"money"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>property <span class="token operator">=</span> <span class="token string">"user"</span><span class="token punctuation">,</span> column <span class="token operator">=</span> <span class="token string">"uid"</span><span class="token punctuation">,</span> one <span class="token operator">=</span> <span class="token annotation punctuation">@One</span><span class="token punctuation">(</span>select <span class="token operator">=</span> <span class="token string">"com.zzq.dao.IUserDao.findById"</span><span class="token punctuation">,</span> fetchType <span class="token operator">=</span> FetchType<span class="token punctuation">.</span>EAGER<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-List<span class="token operator">&lt;</span>Account<span class="token operator">></span> <span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p>其中<code>@Result</code>注解的<strong>one</strong>字段有<strong>select</strong>和<strong>fetchType</strong>两个属性（详情可以看源码）<br><strong>select</strong>属性：配置根据主键查询的方法名的路径<br><strong>fetchType</strong>属性：配置延迟加载/立即加载</p>
-<h2 id="注解开发一对多的查询配置"><a href="#注解开发一对多的查询配置" class="headerlink" title="注解开发一对多的查询配置"></a>注解开发一对多的查询配置</h2><p>我们要在<strong>User实体类</strong>中添加<strong>一对多关系映射</strong></p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Select</span><span class="token punctuation">(</span><span class="token string">"select * from user"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@Results</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token string">"userMap"</span><span class="token punctuation">,</span> value <span class="token operator">=</span> <span class="token punctuation">{</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>id <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> column <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userId"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"username"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userName"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"address"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userAddress"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"sex"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userSex"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"birthday"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"userBirthday"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>property <span class="token operator">=</span> <span class="token string">"accounts"</span><span class="token punctuation">,</span> column <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">,</span> many <span class="token operator">=</span> <span class="token annotation punctuation">@Many</span><span class="token punctuation">(</span>select <span class="token operator">=</span> <span class="token string">"com.zzq.dao.IAccountDao.findAccountByUid"</span><span class="token punctuation">,</span> fetchType <span class="token operator">=</span> FetchType<span class="token punctuation">.</span>LAZY<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span>
-List<span class="token operator">&lt;</span>User<span class="token operator">></span> <span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="注解开发使用二级缓存"><a href="#注解开发使用二级缓存" class="headerlink" title="注解开发使用二级缓存"></a>注解开发使用二级缓存</h2><p>其实不管是用<strong>xml</strong>还是用<strong>注解</strong>，<strong>一级缓存</strong>都会自动开启的，我们无需再做配置</p>
-<p>我们主要关心的是<strong>二级缓存</strong></p>
-<p>如果我们想要开启二级缓存，需要做以下<strong>配置</strong></p>
-<p>其实跟<strong>xml</strong>配置一样，需要在<strong>SqlMapConfig.xml</strong>做配置</p>
-<p>然后在<strong>映射文件</strong>加上<code>CacheNamespace(blocking=true)</code>注解</p>
+                <h2 id="什么是IOC"><a href="#什么是IOC" class="headerlink" title="什么是IOC"></a>什么是IOC</h2><p>我们在使用New关键字创建对象的时候 ：</p>
+<p><img src="/2020/04/15/IOC%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%9C%E7%94%A8/image-20200415161109801.png" alt="image-20200415161109801"></p>
+<p>应用和资源之间有个必然的联系，并且这个联系消不掉，从这一点来说 资源的独立或者应用的独立就变得很难</p>
+<p>我们使用工厂模式创建对象的时候：</p>
+<p><img src="/2020/04/15/IOC%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%9C%E7%94%A8/image-20200415161310898.png" alt="image-20200415161310898"></p>
+<p>当我们的应用需要资源的时候 跟工厂要资源 然后工厂跟资源取得联系 并把联系的资源在转到应用里</p>
+<p>基于这种思想  就叫IOC</p>
+<p>使用new 关键字创建对象，是想创建谁就创建谁 有独立的自主控制权。而使用工厂创建对象他把控制权交给了工厂，让帮工厂帮我们创建对象，控制权发生了改变，因此叫控制反转。</p>
+<p>IOC的作用就是缺减计算机程序的的耦合</p>
 
             </div>
             <hr/>
@@ -564,7 +499,7 @@ List<span class="token operator">&lt;</span>User<span class="token operator">></
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://775728212.github.io/2020/04/14/Mybatis%E4%B9%8B%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91(%E5%85%AB)/">http://775728212.github.io/2020/04/14/Mybatis%E4%B9%8B%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91(%E5%85%AB)/</a>
+                    <a href="http://775728212.github.io/2020/04/15/IOC%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%9C%E7%94%A8/">http://775728212.github.io/2020/04/15/IOC%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E4%BD%9C%E7%94%A8/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -601,11 +536,7 @@ List<span class="token operator">&lt;</span>User<span class="token operator">></
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91/">
-                                    <span class="chip bg-color">注解开发</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -775,27 +706,24 @@ List<span class="token operator">&lt;</span>User<span class="token operator">></
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/15/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%80%A6%E5%90%88%E5%92%8C%E8%A7%A3%E8%80%A6/">
+                <a href="/2020/04/15/Spring%E5%85%A5%E9%97%A8/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="程序逇耦合和解耦">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Spring入门">
                         
-                        <span class="card-title">程序逇耦合和解耦</span>
+                        <span class="card-title">Spring入门</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            程序的耦合耦合：程序间的依赖关系
-包括类之间的依赖 、方法间的依赖
-依赖关系不可能完全解除 只能降低
-解耦：就是降低程序间的依赖关系
-实际开发中应做到编译期不依赖，应行时才依赖
-解耦的思路：
-
-使用反射来创建对象，而避免使用New关键字
-通
+                            
+创建Maven工程 导入Spring依赖
+​    
+       &lt;dependency>
+           &lt;groupId>org.springframework&lt;/groupId>
+           &l
                         
                     </div>
                     <div class="publish-info">
@@ -820,44 +748,40 @@ List<span class="token operator">&lt;</span>User<span class="token operator">></
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/14/Mybatis%E4%B9%8BMybatis%E7%BC%93%E5%AD%98(%E4%B8%83)/">
+                <a href="/2020/04/15/%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%80%A6%E5%90%88%E5%92%8C%E8%A7%A3%E8%80%A6/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Mybatis之Mybatis缓存(七)">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="程序逇耦合和解耦">
                         
-                        <span class="card-title">Mybatis之Mybatis缓存(七)</span>
+                        <span class="card-title">程序逇耦合和解耦</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            延迟加载和立即加载的概念问题：在一对多中，当我们有一个用户，它有100个账户在查询用户的时候，要不要把关联的账户查出来？在查询账户的时候，要不要把关联的用户差出来？在查询用户时，用户下的账户信息应该是什么时候使用，就什么时候查询的在查询账户
+                            程序的耦合耦合：程序间的依赖关系
+包括类之间的依赖 、方法间的依赖
+依赖关系不可能完全解除 只能降低
+解耦：就是降低程序间的依赖关系
+实际开发中应做到编译期不依赖，应行时才依赖
+解耦的思路：
+
+使用反射来创建对象，而避免使用New关键字
+通
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-15
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Mybatis/" class="post-category">
-                                    Mybatis
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            张猿外
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E7%BC%93%E5%AD%98/">
-                        <span class="chip bg-color">缓存</span>
-                    </a>
-                    
                 </div>
                 
             </div>
